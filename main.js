@@ -6,6 +6,10 @@ const support = document.querySelector('.support');
 const time = document.querySelector('.time');
 const body = document.querySelector('body');
 const description = document.querySelector('.description');
+const currentPrice = document.querySelector('.price')
+const key = 'brjo6knrh5r9g3ot7150';
+
+
 
 const xhr = new XMLHttpRequest();
 
@@ -20,7 +24,7 @@ xhr.onload = function () {
             if(input.toUpperCase() === symbol) {
                 description.innerHTML = message[i].description;
                 heading.innerHTML = input;
-                fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=brjo6knrh5r9g3ot7150`).then (function (response){
+                fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${key}`).then (function (response){
                     
                         return response.json();
                     }).then (function (data){
@@ -37,7 +41,7 @@ xhr.onload = function () {
                                 } else{body.style.background ='red'}
                             
                             
-                            return fetch(`https://finnhub.io/api/v1/scan/support-resistance?symbol=${symbol}&resolution=30&token=brjo6knrh5r9g3ot7150`).then (function (response) {
+                            return fetch(`https://finnhub.io/api/v1/scan/support-resistance?symbol=${symbol}&resolution=30&token=${key}`).then (function (response) {
                                 return response.json();
                             }).then (function (data){
                                 support.innerHTML = `<ul>
@@ -47,6 +51,13 @@ xhr.onload = function () {
                                                         <li>Resistance: ${data.levels[3]}</li>
                                                         <li>Resistance: ${data.levels[4]}</li>
                                                     </ul>`;
+                                return fetch(`https://api.iextrading.com/1.0/tops?symbols=${symbol}`).then (function (response){
+                                    return response.json()
+                                }).then (function (data){
+                                    console.log(data[0].volume)
+                                    currentPrice.innerHTML = data[0].lastSalePrice;
+                                    
+                                })
                             })
                         })
             } else {
@@ -59,5 +70,5 @@ xhr.onload = function () {
     
 }
 
-xhr.open('GET', 'https://finnhub.io/api/v1/stock/symbol?exchange=US&token=brjo6knrh5r9g3ot7150', true )
+xhr.open('GET', `https://finnhub.io/api/v1/stock/symbol?exchange=US&token=${key}`, true )
 xhr.send();
