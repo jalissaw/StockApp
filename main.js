@@ -6,7 +6,8 @@ const support = document.querySelector('.support');
 const time = document.querySelector('.time');
 const body = document.querySelector('body');
 const description = document.querySelector('.description');
-const currentPrice = document.querySelector('.price')
+const currentPrice = document.querySelector('.price');
+const volume = document.querySelector('.volume');
 const key = 'brjo6knrh5r9g3ot7150';
 
 
@@ -56,6 +57,7 @@ xhr.onload = function () {
                                 }).then (function (data){
                                     console.log(data[0].volume)
                                     currentPrice.innerHTML = data[0].lastSalePrice;
+                                    volume.innerHTML = `Volume: ${data[0].volume}`;
                                     
                                 })
                             })
