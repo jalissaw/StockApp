@@ -1,0 +1,11 @@
+{
+  "name": "new-folder",
+  "version": "1.0.0",
+  "description": "form validation",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jalissa Williams",
+  "license": "ISC"
+}
