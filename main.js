@@ -5,11 +5,12 @@ const subHeading = document.querySelector('.quotes');
 const support = document.querySelector('.support');
 const time = document.querySelector('.time');
 const body = document.querySelector('body');
+const description = document.querySelector('.description');
 
 const xhr = new XMLHttpRequest();
 
 xhr.onload = function () {
-    console.log('loaded');
+    
     const message = JSON.parse(xhr.responseText);
     submit.addEventListener('click', () => {
     time.innerHTML = new Date(Date.now()).toLocaleString();
@@ -17,12 +18,12 @@ xhr.onload = function () {
         for(var i = 0; i < message.length; i++) {
             const symbol = message[i].symbol;
             if(input.toUpperCase() === symbol) {
+                description.innerHTML = message[i].description;
                 heading.innerHTML = input;
                 fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=brjo6knrh5r9g3ot7150`).then (function (response){
                     
                         return response.json();
                     }).then (function (data){
-                        console.log(data)
                            subHeading.innerHTML = `<ul> 
                                                         <li>Close: ${data.c}</li> 
                                                         <li>High: ${data.h}</li> 
@@ -39,7 +40,6 @@ xhr.onload = function () {
                             return fetch(`https://finnhub.io/api/v1/scan/support-resistance?symbol=${symbol}&resolution=30&token=brjo6knrh5r9g3ot7150`).then (function (response) {
                                 return response.json();
                             }).then (function (data){
-                                console.log(data);
                                 support.innerHTML = `<ul>
                                                         <li>Support: ${data.levels[0]}</li>
                                                         <li>Support: ${data.levels[1]}</li>
