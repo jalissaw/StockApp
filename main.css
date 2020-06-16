@@ -27,9 +27,11 @@ h2 {
     display: flex;
     justify-content: center;
     margin: 0 auto;
+    text-align: center;
     width: 100%;
     color: white;
     font-size: 25px;
+    padding: 10px 10px;
     text-transform: uppercase;
 }
 
