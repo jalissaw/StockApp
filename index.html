@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <link rel="stylesheet" href="main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+  <link rel="stylesheet" href="main.css" />
 
-    <title>SYMBo</title>
+  <title>SYMBo</title>
 </head>
+
 <body>
-    <div class="grid">
-        <div class="stock">
-            <h1 class="namesym">Please Enter A Stock Symbol</h1> 
-            <span class="price">$</span>
-            <h2 class="description"></h2>
-            <h3 class="time"></h3>
-        </div>
-        <div class="data">
-            <h2 class="quotes"></h2>
-            <h2 class="volume"></h2>
-        </div>
-        <div class="support"></div>
-
-        <div class="fields">
-            <input type="text" name="symbol" class="symbol">
-            <button class="submit" type="submit">Send</button>
-        </div>
+  <div id="root" class="react"></div>
+  <div class="grid">
+    <div class="stock">
+      <span class="price">$</span>
+      <h2 class="description"></h2>
+      <h3 class="time"></h3>
     </div>
+    <div class="data">
+      <h2 class="quotes"></h2>
+      <h2 class="volume"></h2>
+    </div>
+    <div class="support"></div>
 
-<script src="main.js"></script>
+    <div class="fields">
+      <input type="text" name="symbol" class="symbol" />
+      <button class="submit" type="submit">Send</button>
+    </div>
+  </div>
+
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <script src="https://npmcdn.com/babel-core@5.8.38/browser.min.js"></script>
+
+
+  <script src="bundle.js"></script>
+  <script src="main.js"></script>
+  <script src="root.js" type="text/babel"></script>
 </body>
+
 </html>
