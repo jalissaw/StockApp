@@ -8,7 +8,7 @@
 body {
     height: 100vh;
     width: 100%;
-    background: rgb(44, 37, 37);
+    background: rgba(36, 38, 63, 0.932);
 }
 
 h1 {
@@ -36,8 +36,8 @@ h2 {
 .description {
     color: black;
     font-weight: 600;
-    border-top: 5px solid black;
-    border-bottom: 5px solid black;
+    /* border-top: 5px solid black;
+    border-bottom: 5px solid black; */
     width: 25%;
 }
 
@@ -87,7 +87,7 @@ li {
 .support{
     
     padding: 10px;
-    background: rgb(0, 0, 0);
+    /* background: rgb(0, 0, 0); */
     color: white;
     transition: ease all 0.4s;
 }
@@ -120,4 +120,11 @@ button {
     color: white;
     border: solid white 1.5px;
     text-transform: uppercase;
+}
+
+.stockchart {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 15px;
 }

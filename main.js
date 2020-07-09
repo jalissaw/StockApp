@@ -8,6 +8,7 @@ const body = document.querySelector('body');
 const description = document.querySelector('.description');
 const currentPrice = document.querySelector('.price');
 const volume = document.querySelector('.volume');
+const stockCharts = document.querySelector('.tradingview-widget-container')
 const key = 'brjo6knrh5r9g3ot7150';
 
 const xhr = new XMLHttpRequest();
@@ -50,6 +51,7 @@ xhr.onload = function () {
                                                         <li>Resistance: ${data.levels[3]}</li>
                                                         <li>Resistance: ${data.levels[4]}</li>
                                                     </ul>`;
+                        support.style.background = 'black';
                         return fetch(`https://api.iextrading.com/1.0/tops?symbols=${symbol}`).then(function (response) {
                             return response.json()
                         }).then(function (data) {
@@ -57,6 +59,12 @@ xhr.onload = function () {
                             currentPrice.innerHTML = data[0].lastSalePrice;
                             volume.innerHTML = `Volume: ${data[0].volume}`;
 
+                            return fetch(`https://finnhub.io/api/v1//scan/technical-indicator?symbol=${symbol}&resolution=D`).then(function (response) {
+                                return response.json()
+                            }).then(function (data) {
+                                console.log(data)
+                                // console.log(data.technicalAnalysis)
+                            })
                         })
                     })
                 })
