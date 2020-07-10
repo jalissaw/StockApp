@@ -17,7 +17,7 @@ xhr.onload = function () {
 
     const message = JSON.parse(xhr.responseText);
     submit.addEventListener('click', () => {
-        time.innerHTML = new Date(Date.now()).toLocaleString();
+        time.innerHTML = new Date().toLocaleString();
         const input = document.querySelector('.symbol').value;
         for (var i = 0; i < message.length; i++) {
             const symbol = message[i].symbol;
@@ -63,7 +63,7 @@ xhr.onload = function () {
                                 return response.json()
                             }).then(function (data) {
                                 console.log(data)
-                                // console.log(data.technicalAnalysis)
+                                console.log(data.technicalAnalysis)
                             })
                         })
                     })
