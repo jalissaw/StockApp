@@ -24,50 +24,54 @@ xhr.onload = function () {
             if (input.toUpperCase() === symbol) {
                 description.innerHTML = message[i].description;
                 heading.innerHTML = input;
-                fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${key}`).then(function (response) {
+                fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${key}`)
+                    .then(function (response) {
 
-                    return response.json();
-                }).then(function (data) {
-                    subHeading.innerHTML = `<ul> 
-                                                        <li>Close: ${data.c}</li> 
-                                                        <li>High: ${data.h}</li> 
-                                                        <li>Open: ${data.o}</li> 
-                                                        <li>Low: ${data.l}</li> 
-                                                        <li>Range: ${Math.floor(data.h - data.l)}</li>
-                                                   </ul>`;
-                    //change color of background if stock is up or down
-                    if (data.c >= data.o) {
-                        body.style.background = 'green'
-                    } else { body.style.background = 'red' }
-
-
-                    return fetch(`https://finnhub.io/api/v1/scan/support-resistance?symbol=${symbol}&resolution=30&token=${key}`).then(function (response) {
                         return response.json();
                     }).then(function (data) {
-                        support.innerHTML = `<ul>
-                                                        <li>Support: ${data.levels[0]}</li>
-                                                        <li>Support: ${data.levels[1]}</li>
-                                                        <li>Support/Resistance: ${data.levels[2]}</li>
-                                                        <li>Resistance: ${data.levels[3]}</li>
-                                                        <li>Resistance: ${data.levels[4]}</li>
-                                                    </ul>`;
-                        support.style.background = 'black';
-                        return fetch(`https://api.iextrading.com/1.0/tops?symbols=${symbol}`).then(function (response) {
-                            return response.json()
-                        }).then(function (data) {
-                            console.log(data[0].volume)
-                            currentPrice.innerHTML = data[0].lastSalePrice;
-                            volume.innerHTML = `Volume: ${data[0].volume}`;
+                        subHeading.innerHTML =
+                            `<ul> 
+                                <li>Close: ${data.c}</li> 
+                                <li>High: ${data.h}</li> 
+                                <li>Open: ${data.o}</li> 
+                                <li>Low: ${data.l}</li> 
+                                <li>Range: ${Math.floor(data.h - data.l)}</li>
+                            </ul>`;
+                        //change color of background if stock is up or down
+                        if (data.c >= data.o) {
+                            body.style.background = 'green'
+                        } else { body.style.background = 'red' }
 
-                            return fetch(`https://finnhub.io/api/v1//scan/technical-indicator?symbol=${symbol}&resolution=D`).then(function (response) {
-                                return response.json()
+
+                        return fetch(`https://finnhub.io/api/v1/scan/support-resistance?symbol=${symbol}&resolution=30&token=${key}`)
+                            .then(function (response) {
+                                return response.json();
                             }).then(function (data) {
-                                console.log(data)
-                                console.log(data.technicalAnalysis)
+                                support.innerHTML = `<ul>
+                                                <li>Support: ${data.levels[0]}</li>
+                                                <li>Support: ${data.levels[1]}</li>
+                                                <li>Support/Resistance: ${data.levels[2]}</li>
+                                                <li>Resistance: ${data.levels[3]}</li>
+                                                <li>Resistance: ${data.levels[4]}</li>
+                                            </ul>`;
+                                support.style.background = 'black';
+                                return fetch(`https://api.iextrading.com/1.0/tops?symbols=${symbol}`)
+                                    .then(function (response) {
+                                        return response.json()
+                                    }).then(function (data) {
+                                        currentPrice.innerHTML = data[0].lastSalePrice;
+                                        volume.innerHTML = `Volume: ${data[0].volume}`;
+
+                                        return fetch(`https://finnhub.io/api/v1//scan/technical-indicator?symbol=${symbol}&resolution=D`)
+                                            .then(function (response) {
+                                                return response.json()
+                                            }).then(function (data) {
+                                                console.log(data)
+                                                console.log(data.technicalAnalysis)
+                                            })
+                                    })
                             })
-                        })
                     })
-                })
             } else {
                 event.preventDefault();
 
