@@ -9,6 +9,7 @@ const description = document.querySelector('.description');
 const currentPrice = document.querySelector('.price');
 const volume = document.querySelector('.volume');
 const stockCharts = document.querySelector('.tradingview-widget-container')
+const signal = document.querySelector('.signal')
 const key = 'brjo6knrh5r9g3ot7150';
 
 const xhr = new XMLHttpRequest();
@@ -26,7 +27,6 @@ xhr.onload = function () {
                 heading.innerHTML = input;
                 fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${key}`)
                     .then(function (response) {
-
                         return response.json();
                     }).then(function (data) {
                         subHeading.innerHTML =
@@ -66,8 +66,8 @@ xhr.onload = function () {
                                             .then(function (response) {
                                                 return response.json()
                                             }).then(function (data) {
-                                                console.log(data)
-                                                console.log(data.technicalAnalysis)
+                                                signal.innerHTML = "Signal: " + data.technicalAnalysis.signal
+
                                             })
                                     })
                             })
