@@ -18,10 +18,14 @@ xhr.onload = function () {
 
     const message = JSON.parse(xhr.responseText);
     submit.addEventListener('click', () => {
+        //get date
         time.innerHTML = new Date().toLocaleString();
+        //get value of input query
         const input = document.querySelector('.symbol').value;
+        //cycle throught api request
         for (var i = 0; i < message.length; i++) {
             const symbol = message[i].symbol;
+            //return symbol if it input query matches api symbol
             if (input.toUpperCase() === symbol) {
                 description.innerHTML = message[i].description;
                 heading.innerHTML = input;
